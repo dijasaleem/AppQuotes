@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/displayQuoteFragment">
+
+    <fragment
+        android:id="@+id/displayQuoteFragment"
+        android:name="com.example.quotesapp.quotes.DisplayQuoteFragment"
+        android:label="DisplayQuoteFragment" >
+        <action
+            android:id="@+id/action_displayQuoteFragment_to_quoteDetailBottomSheet"
+            app:destination="@id/quoteDetailBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/quoteDetailBottomSheet"
+        android:name="com.example.quotesapp.quotes.QuoteDetailBottomSheet"
+        android:label="QuoteDetailBottomSheet" >
+        <argument
+            android:name="quoteDetail"
+            app:argType="com.example.quotesapp.quotes.Quote" />
+    </dialog>
+</navigation>
