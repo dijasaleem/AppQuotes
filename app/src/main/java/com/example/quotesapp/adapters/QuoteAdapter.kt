@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quotesapp.R
 import com.example.quotesapp.models.Quote
 
-class QuoteAdapter(private val quotesList: List<Quote>,
+class QuoteAdapter(private var quotesList: List<Quote>,
                    private val clickListener: (Quote) -> Unit) : RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : QuoteAdapter.QuoteViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.quote_item, parent, false)
@@ -21,6 +21,10 @@ class QuoteAdapter(private val quotesList: List<Quote>,
     }
     override fun getItemCount(): Int {
        return quotesList.size
+    }
+    fun submitList(newQuotes: List<Quote>) {
+        quotesList = newQuotes
+        notifyDataSetChanged()
     }
     inner class QuoteViewHolder(itemView: View, clickAtPosition: (Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
         var quoteText: TextView

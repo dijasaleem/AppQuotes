@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Quotes App</string>
+    <string name="author">Author</string>
+    <string name="add_to_n_favourite">Add to Favourite</string>
+    <string name="your_favourites">YOUR FAVOURITES</string>
+    <string name="my_quotes">MY QUOTES</string>
 </resources>

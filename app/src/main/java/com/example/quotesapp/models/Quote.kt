@@ -7,13 +7,11 @@ import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-//@Entity(tableName = "Quote")
+@Entity(tableName = "Quote")
 data class Quote(
-    //@PrimaryKey(autoGenerate = true)
-    val id : Long,
+
     val author: String,
-    //val id: String,
-    //val length: String?,
-    val text: String,
-    //val tags: List<Any>?
+    @PrimaryKey
+    val text: String
+
 ):Parcelable

@@ -25,17 +25,20 @@ class QuoteDetailBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val author : TextView = view.findViewById(R.id.quote_author)
+        val author: TextView = view.findViewById(R.id.quote_author)
         author.text = "Author: " + args.quoteDetail.author
-        //val button : Button = view.findViewById(R.id.add_to_fav)
-
-       /* button.setOnClickListener {
-            val database = QuoteDatabase.getDatabaseInstance(this.requireContext())
-            viewLifecycleOwner.lifecycleScope.launch {
-                database.quoteDao().insertQuote(args.quoteDetail)
+        val button: Button = view.findViewById(R.id.add_to_fav)
+        if (!args.butonEnabled)
+            button.isEnabled = false
+        else {
+            button.setOnClickListener {
+                val database = QuoteDatabase.getDatabaseInstance(this.requireContext())
+                viewLifecycleOwner.lifecycleScope.launch {
+                    database.quoteDao().insertQuote(args.quoteDetail)
+                }
+                dismiss()
             }
-        }*/
 
+        }
     }
-
 }

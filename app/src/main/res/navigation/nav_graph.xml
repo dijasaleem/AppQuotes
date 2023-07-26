@@ -18,6 +18,17 @@
         android:label="QuoteDetailBottomSheet" >
         <argument
             android:name="quoteDetail"
-            app:argType="com.example.quotesapp.quotes.Quote" />
+            app:argType="com.example.quotesapp.models.Quote" />
+        <argument
+            android:name="buton_enabled"
+            app:argType="boolean" />
     </dialog>
+    <fragment
+        android:id="@+id/displayFavFragment"
+        android:name="com.example.quotesapp.quotes.DisplayFavFragment"
+        android:label="DisplayFavFragment" >
+        <action
+            android:id="@+id/action_displayFavFragment_to_quoteDetailBottomSheet2"
+            app:destination="@id/quoteDetailBottomSheet" />
+    </fragment>
 </navigation>
