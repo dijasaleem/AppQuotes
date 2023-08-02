@@ -34,7 +34,9 @@ class QuoteDetailBottomSheet : BottomSheetDialogFragment() {
             button.setOnClickListener {
                 val database = QuoteDatabase.getDatabaseInstance(this.requireContext())
                 viewLifecycleOwner.lifecycleScope.launch {
-                    database.quoteDao().insertQuote(args.quoteDetail)
+                    val quote = args.quoteDetail
+                    quote.isFav = true
+                    database.quoteDao().updateQuote(quote)
                 }
                 dismiss()
             }

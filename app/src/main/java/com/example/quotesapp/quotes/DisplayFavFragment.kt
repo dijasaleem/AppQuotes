@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +16,7 @@ import com.example.quotesapp.R
 import com.example.quotesapp.adapters.QuoteAdapter
 import com.example.quotesapp.models.Quote
 import com.example.quotesapp.room.QuoteDatabase
+import kotlinx.coroutines.launch
 
 class DisplayFavFragment : Fragment() {
     private lateinit var quotesList: ArrayList<Quote>
@@ -33,10 +37,14 @@ class DisplayFavFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = quoteAdapter
         val database = QuoteDatabase.getDatabaseInstance(this.requireContext())
-        database.quoteDao().getQuotes().observe(viewLifecycleOwner) { quotes ->
-            quoteAdapter.submitList(quotes)
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                val quoteRepository = QuoteRepository(database.quoteDao())
+                quoteRepository.getFavoriteQuotes().collect{
+                    quoteAdapter.submitList(it)
+                }
+            }
         }
-
         return view
     }
 
