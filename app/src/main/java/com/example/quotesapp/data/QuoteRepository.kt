@@ -1,17 +1,14 @@
-package com.example.quotesapp.quotes
+package com.example.quotesapp.data
 
 
 
 import android.util.Log
+import com.example.quotesapp.data.local.QuoteDao
+import com.example.quotesapp.data.remote.RetrofitInstance
 import com.example.quotesapp.models.Quote
-import com.example.quotesapp.retrofit.RetrofitInstance
-import com.example.quotesapp.room.QuoteDao
-import com.example.quotesapp.room.QuoteDatabase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
 
 class QuoteRepository ( private val quoteDao : QuoteDao){
     private val TAG = "Quote_Repository"
@@ -35,8 +32,12 @@ class QuoteRepository ( private val quoteDao : QuoteDao){
 
     }
 
+    suspend fun updateQuote(quote: Quote){
+        quoteDao.updateQuote(quote)
+    }
     fun getFavoriteQuotes(): Flow<List<Quote>> {
-        return quoteDao.getFavoriteQuotes()
+        return quoteDao
+            .getFavoriteQuotes()
     }
     
 }

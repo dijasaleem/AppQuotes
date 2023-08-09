@@ -1,4 +1,4 @@
-package com.example.quotesapp.adapters
+package com.example.quotesapp.ui.theme.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.quotesapp.models.Quote

@@ -1,4 +1,4 @@
-package com.example.quotesapp.room
+package com.example.quotesapp.data.local
 
 import android.content.Context
 import androidx.room.Database

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/displayQuoteFragment"
-        android:name="com.example.quotesapp.quotes.DisplayQuoteFragment"
+        android:name="com.example.quotesapp.ui.theme.quotes.DisplayQuoteFragment"
         android:label="DisplayQuoteFragment" >
         <action
             android:id="@+id/action_displayQuoteFragment_to_quoteDetailBottomSheet"
@@ -14,7 +14,7 @@
     </fragment>
     <dialog
         android:id="@+id/quoteDetailBottomSheet"
-        android:name="com.example.quotesapp.quotes.QuoteDetailBottomSheet"
+        android:name="com.example.quotesapp.ui.theme.quotes.QuoteDetailBottomSheet"
         android:label="QuoteDetailBottomSheet" >
         <argument
             android:name="quoteDetail"
@@ -25,7 +25,7 @@
     </dialog>
     <fragment
         android:id="@+id/displayFavFragment"
-        android:name="com.example.quotesapp.quotes.DisplayFavFragment"
+        android:name="com.example.quotesapp.ui.theme.quotes.DisplayFavFragment"
         android:label="DisplayFavFragment" >
         <action
             android:id="@+id/action_displayFavFragment_to_quoteDetailBottomSheet2"

@@ -1,4 +1,4 @@
-package com.example.quotesapp.retrofit
+package com.example.quotesapp.data.remote
 
 import okhttp3.Interceptor
 import okhttp3.Response

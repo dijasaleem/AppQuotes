@@ -1,4 +1,4 @@
-package com.example.quotesapp.room
+package com.example.quotesapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

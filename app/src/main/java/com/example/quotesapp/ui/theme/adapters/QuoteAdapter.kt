@@ -1,4 +1,4 @@
-package com.example.quotesapp.adapters
+package com.example.quotesapp.ui.theme.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +11,13 @@ import com.example.quotesapp.models.Quote
 
 class QuoteAdapter(private var quotesList: List<Quote>,
                    private val clickListener: (Quote) -> Unit) : RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : QuoteAdapter.QuoteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : QuoteViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.quote_item, parent, false)
         return QuoteViewHolder(v){
             clickListener(quotesList[it])
         }
     }
-    override fun onBindViewHolder(holder: QuoteAdapter.QuoteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
         holder.quoteText.text = quotesList[position].text
     }
     override fun getItemCount(): Int {
