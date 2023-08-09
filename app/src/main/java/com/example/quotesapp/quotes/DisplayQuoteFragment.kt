@@ -18,7 +18,6 @@ import com.example.quotesapp.room.QuoteDatabase
 import kotlinx.coroutines.launch
 
 class DisplayQuoteFragment : Fragment() {
-    private var TAG = "QUOTE FRAGMENT"
     private lateinit var recyclerView : RecyclerView
     private lateinit var listAdapter : QuoteAdapter
 
@@ -44,7 +43,7 @@ class DisplayQuoteFragment : Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED)
             {
                val quoteRepository = QuoteRepository(database.quoteDao())
-                 quoteRepository.getQuotes().collect{
+                quoteRepository.getQuotes().collect{
                      listAdapter.submitList(it)
                  }
             }

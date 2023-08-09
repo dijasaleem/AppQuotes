@@ -17,7 +17,7 @@ interface QuoteDao {
     @Query("SELECT * FROM quotes")
     fun getQuotes() : Flow<List<Quote>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(quotes: List<Quote>)
 
     @Query("SELECT * FROM quotes WHERE isFav = 1")

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quotesapp.R
 import com.example.quotesapp.models.Quote
@@ -22,9 +23,10 @@ class QuoteAdapter(private var quotesList: List<Quote>,
     override fun getItemCount(): Int {
        return quotesList.size
     }
-    fun submitList(newQuotes: List<Quote>) {
-        quotesList = newQuotes
-        notifyDataSetChanged()
+    fun submitList(newList: List<Quote>) {
+        val diffResult = DiffUtil.calculateDiff(QuoteDiffCallback(quotesList, newList))
+        quotesList = newList
+        diffResult.dispatchUpdatesTo(this)
     }
     inner class QuoteViewHolder(itemView: View, clickAtPosition: (Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
         var quoteText: TextView
