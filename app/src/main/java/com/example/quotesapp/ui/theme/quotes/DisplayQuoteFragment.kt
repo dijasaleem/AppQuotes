@@ -30,10 +30,9 @@ class DisplayQuoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         viewModel = ViewModelProvider(this, QuoteViewModelFactory(this.requireContext()))[DisplayQuoteViewModel::class.java]
         val view = inflater.inflate(R.layout.fragment_display_quote, container, false)
+        viewModel = ViewModelProvider(this, QuoteViewModelFactory(this.requireContext()))[DisplayQuoteViewModel::class.java]
         recyclerView = view.findViewById(R.id.quoteRecyclerView)
-
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         listAdapter = QuoteAdapter(ArrayList()){
             val action: NavDirections =

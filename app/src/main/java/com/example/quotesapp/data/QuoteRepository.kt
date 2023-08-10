@@ -27,7 +27,7 @@ class QuoteRepository ( private val quoteDao : QuoteDao){
             }
         }
         catch(e : Exception){
-            Log.i(TAG, "Some exception occured")
+            Log.i(TAG, "Some exception occurred")
         }
 
     }

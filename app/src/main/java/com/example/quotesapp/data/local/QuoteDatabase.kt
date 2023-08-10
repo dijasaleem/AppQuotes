@@ -14,13 +14,18 @@ abstract class QuoteDatabase : RoomDatabase(){
 
     companion object{
 
+        @Volatile
         private var INSTANCE: QuoteDatabase? = null
         fun getDatabaseInstance(context: Context) : QuoteDatabase{
             if(INSTANCE == null)
             {
-                INSTANCE = Room.databaseBuilder(context.applicationContext,
-                QuoteDatabase::class.java,
-                "quoteDB").build()
+                synchronized(this) {
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        QuoteDatabase::class.java,
+                        "quoteDB"
+                    ).build()
+                }
             }
             return INSTANCE!!
         }

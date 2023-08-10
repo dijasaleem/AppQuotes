@@ -23,7 +23,7 @@ import com.example.quotesapp.util.QuoteViewModelFactory
 import kotlinx.coroutines.launch
 
 class DisplayFavFragment : Fragment() {
-    private lateinit var quotesList: ArrayList<Quote>
+    private var quotesList: ArrayList<Quote> = ArrayList()
     private var TAG = "QUOTE FRAGMENT"
     private lateinit var quoteAdapter: QuoteAdapter
     private lateinit var viewModel : DisplayFavViewModel
@@ -34,7 +34,6 @@ class DisplayFavFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_display_fav, container, false)
         viewModel = ViewModelProvider(this, QuoteViewModelFactory(this.requireContext()))[DisplayFavViewModel::class.java]
-        quotesList = ArrayList()
         quoteAdapter = QuoteAdapter(quotesList){
             val action: NavDirections =
                 DisplayFavFragmentDirections.actionDisplayFavFragmentToQuoteDetailBottomSheet2(
