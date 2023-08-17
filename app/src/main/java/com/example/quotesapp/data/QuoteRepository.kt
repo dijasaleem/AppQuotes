@@ -4,13 +4,14 @@ package com.example.quotesapp.data
 
 import android.util.Log
 import com.example.quotesapp.data.local.QuoteDao
-import com.example.quotesapp.data.remote.RetrofitInstance
+import com.example.quotesapp.data.remote.QuotesApi
 import com.example.quotesapp.models.Quote
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
-class QuoteRepository ( private val quoteDao : QuoteDao){
+class QuoteRepository ( private val quoteDao : QuoteDao, private val quoteApi : QuotesApi){
+
     private val TAG = "Quote_Repository"
     fun getQuotes(): Flow<List<Quote>> = flow {
         val cachedQuotes = quoteDao.getQuotes().first()
@@ -19,7 +20,7 @@ class QuoteRepository ( private val quoteDao : QuoteDao){
         }
 
         try {
-            val quotesResponseFromApi = RetrofitInstance.api.getQuotes()
+            val quotesResponseFromApi = quoteApi.getQuotes()
             if(quotesResponseFromApi.isSuccessful && quotesResponseFromApi.body() != null)
             {
                 quoteDao.insertAll(quotesResponseFromApi.body()!!)

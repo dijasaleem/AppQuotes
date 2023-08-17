@@ -6,21 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.quotesapp.R
-import com.example.quotesapp.data.local.QuoteDatabase
-import com.example.quotesapp.ui.theme.quotes.QuoteDetailBottomSheetArgs
 import com.example.quotesapp.ui.theme.viewModels.DisplayDetailViewModel
-import com.example.quotesapp.ui.theme.viewModels.DisplayQuoteViewModel
-import com.example.quotesapp.util.QuoteViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuoteDetailBottomSheet : BottomSheetDialogFragment() {
     private val args : QuoteDetailBottomSheetArgs by navArgs()
-    private lateinit var viewModel: DisplayDetailViewModel
+    private val model by viewModel<DisplayDetailViewModel>()
     private lateinit var author : TextView
     private lateinit var button: Button
     override fun onCreateView(
@@ -32,7 +29,6 @@ class QuoteDetailBottomSheet : BottomSheetDialogFragment() {
         author = view.findViewById(R.id.quote_author)
         author.text = "Author: " + args.quoteDetail.author
         button = view.findViewById(R.id.add_to_fav)
-        viewModel = ViewModelProvider(this, QuoteViewModelFactory(this.requireContext()))[DisplayDetailViewModel::class.java]
         return view
     }
 
@@ -44,7 +40,7 @@ class QuoteDetailBottomSheet : BottomSheetDialogFragment() {
             button.setOnClickListener {
                 viewLifecycleOwner.lifecycleScope.launch {
                     val quote = args.quoteDetail
-                    viewModel.addToFavorites(quote)
+                    model.addToFavorites(quote)
                 }
                 dismiss()
             }

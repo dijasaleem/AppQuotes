@@ -51,6 +51,10 @@ android {
 }
 
 dependencies {
+    //koin
+    implementation "io.insert-koin:koin-android:3.4.0"
+    //implementation "org.koin:koin-android:2.4.0"
+    //implementation "org.koin:koin-android-viewmodel:2.4.0"
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
