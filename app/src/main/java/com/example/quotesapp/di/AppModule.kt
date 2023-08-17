@@ -11,6 +11,7 @@ import com.example.quotesapp.ui.theme.viewModels.DisplayFavViewModel
 import com.example.quotesapp.ui.theme.viewModels.DisplayQuoteViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
@@ -29,9 +30,9 @@ val quoteAppModule: Module  get() = module {
 }
 
 val viewModelModule = module{
-    viewModel { DisplayDetailViewModel( get() ) }
-    viewModel { DisplayFavViewModel( get() ) }
-    viewModel { DisplayQuoteViewModel( get() ) }
+    viewModelOf(::DisplayDetailViewModel)
+    viewModelOf (::DisplayFavViewModel )
+    viewModelOf (::DisplayQuoteViewModel)
 }
 val domainModule = module{
     factory { AddToFavUseCase( get() ) }
